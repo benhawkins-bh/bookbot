@@ -1,5 +1,6 @@
 def main():
-    book_filepath = "books/frankenstein.txt"
+    user_chosen_book = input("Enter book name:")
+    book_filepath = f"books/{user_chosen_book}.txt"
     text_output = get_book_text(book_filepath)
     word_count = get_word_count(text_output)
     character_count_dict = get_character_count(text_output)
