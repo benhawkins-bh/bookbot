@@ -6,6 +6,26 @@ def main():
     character_count_list = convert_dict_into_sorted_list(character_count_dict)
     character_count_report(book_filepath, word_count, character_count_list)
 
+def get_book_text(filepath):
+    with open(filepath) as f:
+        file_contents = f.read()
+    return file_contents
+
+def get_word_count(text):
+    word_count = len(text.split())
+    return word_count
+
+def get_character_count(text):
+    lowered_text = text.lower()
+    final_dict = {}
+    
+    for letter in lowered_text:
+        if letter in final_dict:
+            final_dict[letter] += 1
+        else:
+            final_dict[letter] = 1
+    return final_dict
+
 def sort_on(dict):
     return dict["num"]
 
@@ -27,25 +47,5 @@ def character_count_report(filepath, number_of_words, character_list):
     print(f"{number_of_words} words found in the document\n")
     for character in character_list:
         print(f"The '{character["letter"]}' character was found {character["num"]} times")
-
-def get_book_text(filepath):
-    with open(filepath) as f:
-        file_contents = f.read()
-    return file_contents
-
-def get_word_count(text):
-    word_count = len(text.split())
-    return word_count
-
-def get_character_count(text):
-    lowered_text = text.lower()
-    final_dict = {}
-    
-    for letter in lowered_text:
-        if letter in final_dict:
-            final_dict[letter] += 1
-        else:
-            final_dict[letter] = 1
-    return final_dict
 
 main()
